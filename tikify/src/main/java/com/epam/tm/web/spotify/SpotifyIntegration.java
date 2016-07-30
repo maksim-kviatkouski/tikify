@@ -41,7 +41,6 @@ public class SpotifyIntegration {
         MultiValueMap<String, String> mvm = new LinkedMultiValueMap<String, String>();
         mvm.add("grant_type", "client_credentials");
         mvm.add("scope", scope);
-        System.out.println(provider.getClientId());
         return rest.execute("https://accounts.spotify.com/api/token", HttpMethod.POST, new RequestCallback() {
             @Override
             public void doWithRequest(ClientHttpRequest request) throws IOException {
