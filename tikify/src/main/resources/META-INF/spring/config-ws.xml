@@ -1,0 +1,87 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="jettyServer" class="org.eclipse.jetty.server.Server"
+        lazy-init="false" init-method="start" destroy-method="stop">
+        <property name="threadPool" ref="jettyServerThreadPool" />
+        <property name="connectors">
+            <util:list>
+                <ref bean="jettyServerChannelConnector" />
+            </util:list>
+        </property>
+        <property name="handler" ref="jettyContextHandler" />
+    </bean>
+
+    <bean id="jettyServerThreadPool" class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+        <property name="minThreads" value="2" />
+        <property name="maxThreads" value="64" />
+        <property name="maxQueued" value="128" />
+        <property name="name" value="jetty-thread" />
+    </bean>
+
+    <!-- HTTP connector -->
+    <bean id="jettyServerChannelConnector" class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+        <property name="acceptors" value="2" />
+        <property name="port" value="8080" />
+        <property name="maxIdleTime" value="30000" />
+        <property name="threadPool" ref="jettyServerThreadPool" />
+    </bean>
+
+    <!-- Context Handler -->
+    <bean id="jettyContextHandler" class="com.epam.tm.web.SpringSecurityInitializingServletContextHandler">
+        <property name="resourceBase" value="." />
+        <property name="contextPath" value="/" />
+        <property name="servletHandler">
+            <bean class="org.eclipse.jetty.servlet.ServletHandler">
+                <property name="servlets">
+                    <list>
+                        <bean class="org.eclipse.jetty.servlet.ServletHolder">
+                            <property name="name" value="DispatcherServlet" />
+                            <property name="servlet">
+                                <bean class="org.springframework.web.servlet.DispatcherServlet" />
+                            </property>
+                            <property name="initParameters">
+                                <map>
+                                    <entry key="contextConfigLocation" value="classpath:META-INF/spring/jetty-web-context.xml" />
+                                </map>
+                            </property>
+                        </bean>
+                    </list>
+                </property>
+                <property name="servletMappings">
+                    <list>
+                        <bean class="org.eclipse.jetty.servlet.ServletMapping">
+                            <property name="pathSpecs" value="/*" />
+                            <property name="servletName" value="DispatcherServlet" />
+                        </bean>
+                    </list>
+                </property>
+                <property name="filters">
+                    <list>
+                        <bean class="org.eclipse.jetty.servlet.FilterHolder">
+                            <property name="name" value="HttpPutFormContentFilter" />
+                            <property name="filter">
+                                <bean class="org.springframework.web.filter.HttpPutFormContentFilter" />
+                            </property>
+                        </bean>
+                    </list>
+                </property>
+                <property name="filterMappings">
+                    <list>
+                        <bean class="org.eclipse.jetty.servlet.FilterMapping">
+                            <property name="pathSpecs" value="/*" />
+                            <property name="filterName" value="HttpPutFormContentFilter" />
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>
