@@ -1,6 +1,6 @@
 (function(){
 	
-	var token = '';
+	var token = 'BQCDmBWoJWZH7vf1eV93f0h2BJYObAfSKz1sJ075_XuHoGJ42wlWR-_fQyUAq1KmFI2ZuCiDdRGvoyhxiKDH8NTiLpOzNriEkrhlcXhn-JxC-7nVHVcbt4nvPADK1YH31xRkgvq4eNZBXhKVeUrLgg84w7HFe1qXTCkIbuM0R6_rbK5hNGyjwA2KpcfitH1QvGllzNJGGiQogbIwD37WD18BR2Qma3y46MTummiTLASNHUg5zEDBbX6qMANEXrfVjFkplOwnwAk5R0fMPsy0ivZbtSTDGIqcM-dDCrv4yscfsAD5Jodxd7ho';
 		
 	function queryTopTracks() {
 		$.ajax({
@@ -33,7 +33,9 @@
 						artists[art[j].name]=true;
 					}
 				}
-				alert(JSON.stringify(artists));
+				setTimeout(function(){
+                    fillUiEvents(artists);
+                }, 0)
 			},
 			error: function(err) {
 				alert(err);

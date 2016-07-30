@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+</head>
+<body>
+<form id="form1" runat="server">
+    <div>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/tm.css" rel="stylesheet"/>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        </head>
+        <body>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/handlebars.js"></script>
+
+    </div>
+
+    <div class="jumbotron" style="text-align:center; padding-bottom:0px; padding-top:1px; margin-bottom:-15px">
+        <h1 style="padding-bottom:0px">Your favorites</h1>
+    </div>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0" style="padding-top:0px">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+            <div id="me"></div>
+
+
+
+            <script id="entry-template" type="text/x-handlebars-template">
+                <div class="entry">
+                    {{#eventitems tmi}}
+                    <div class="item {{active}}">
+                        <table>
+                            <tr>
+
+                                <td>
+                                    <a href="{{tmlink}}">
+                                        <img src="{{image}}" alt="DM" style="width:140px; height:100px"><br />
+                                        {{eventdate}}<br />
+                                        {{eventname}}<br />
+                                        {{genre}}
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+                    {{/eventitems}}
+
+                </div>
+            </script>
+
+        </div>
+
+        <script type="text/javascript">
+
+
+
+            Handlebars.registerHelper('eventitems', function (items, block) {
+                        var accum = '';
+                        for (var i = 0; i < items; ++i)
+                            accum += items.fn(i);
+
+                        return accum;
+                    }
+
+
+
+            );
+
+
+
+            var source = $("#entry-template").html();
+            var template = Handlebars.compile(source);
+            var data = { tmi: [
+                { active: "active", tmlink: "http://www.google.com", image: "img/dm1.jpg", eventdate: "August 1, 2016", eventname: "Depeche Mode", genre: "Electronic" },
+                { active: "active", tmlink: "http://www.google.com", image: "img/dm2.jpg", eventdate: "August 2, 2016", eventname: "Depeche Mode", genre: "Electronic" },
+                { active: "active", tmlink: "http://www.google.com", image: "img/dm3.jpg", eventdate: "August 3, 2016", eventname: "Depeche Mode", genre: "Electronic" },
+                { active: "active", tmlink: "http://www.google.com", image: "img/dm4.png", eventdate: "August 1, 2016", eventname: "Depeche Mode", genre: "Electronic" },
+                { active: "active", tmlink: "http://www.google.com", image: "img/e1.jpg", eventdate: "August 1, 2016", eventname: "Depeche Mode", genre: "Celtic" },
+                { active: "active", tmlink: "http://www.google.com", image: "img/e1.jpg", eventdate: "August 1, 2016", eventname: "Depeche Mode", genre: "Celtic" },
+            ]
+            };
+
+            var res = template(data, data);
+            $("#me").html(template(data));
+
+
+
+
+        </script>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</form>
+
+</body>
+</html>
