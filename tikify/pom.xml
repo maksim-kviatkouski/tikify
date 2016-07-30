@@ -29,26 +29,26 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>com.ticketmaster.api</groupId>
-            <artifactId>discovery-java</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.kaaes</groupId>
-            <artifactId>spotify-web-api-android</artifactId>
-            <version>0.4.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.ticketmaster.api</groupId>-->
+            <!--<artifactId>discovery-java</artifactId>-->
+            <!--<version>0.1.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.github.kaaes</groupId>-->
+            <!--<artifactId>spotify-web-api-android</artifactId>-->
+            <!--<version>0.4.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>7.6.16.v20140903</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>javax.servlet</artifactId>
-                    <groupId>org.eclipse.jetty.orbit</groupId>
-                </exclusion>
-            </exclusions>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>javax.servlet</artifactId>-->
+                    <!--<groupId>org.eclipse.jetty.orbit</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
