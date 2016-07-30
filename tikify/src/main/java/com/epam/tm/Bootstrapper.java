@@ -1,7 +1,3 @@
-/**
- * Copyright 2015 Expedia, Inc. All rights reserved.
- * EXPEDIA PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.epam.tm;
 
 import java.util.Date;
@@ -10,10 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
- * @author Pavlo_Rodionov
- *
- */
 public class Bootstrapper {
     private static final Logger LOG = LoggerFactory.getLogger(Bootstrapper.class);
 
@@ -22,7 +14,7 @@ public class Bootstrapper {
             LOG.info("INIT PHASE START");
 
             ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
-                            new String[] { "classpath:META-INF/spring/spring-root-context.xml" }, false);
+                    new String[] { "classpath:META-INF/spring/spring-root-context.xml" }, false);
             ctx.refresh();
 
             if (ctx.isActive() && ctx.isRunning()) {

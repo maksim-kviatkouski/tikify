@@ -1,7 +1,3 @@
-/**
- * Copyright 2015 Expedia, Inc. All rights reserved.
- * EXPEDIA PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.epam.tm.web;
 
 import java.util.Arrays;

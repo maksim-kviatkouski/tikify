@@ -11,5 +11,10 @@
     <context:property-placeholder location="classpath:properties.properties"/>
     
     <import resource="classpath:META-INF/spring/config-ws.xml" />
+    
+    <bean class="com.epam.tm.spotify.SpotifyProvider">
+        <property name="clientId" value="${spotify.client.id}" />
+        <property name="clientSecret" value="${spotify.client.secret}" />
+    </bean>
 
 </beans>
