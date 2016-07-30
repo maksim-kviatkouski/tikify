@@ -1,5 +1,5 @@
 var spotifyApi = new SpotifyWebApi();
-spotifyApi.setAccessToken('BQD4dKIkqsKZ2JQN6RvzzJFA-giTz8oX9MimnKHz1LSQlxOchHDEMxL2tZVQCTP83QYFLzss0td4-K6XMbSp0A');
+spotifyApi.setAccessToken('BQDg7USwIQCHy3e91VAPdxYOls0cp99xDHhy6efqaB_jc9dr1yRPXBSA5g2O_UFe1FnmAT51Z4nQARBW3fpgRbNNzocN_g');
 spotifyApi.getMySavedTracks({limit: 100}, function(err, data){
     if (err) console.error(err)
     else {
